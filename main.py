@@ -2,7 +2,7 @@ import os
 import math
 import asyncio
 from datetime import datetime, timezone, timedelta
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Literal
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, BackgroundTasks, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -115,7 +115,7 @@ async def get_config() -> AppConfig:
 # ---------------------------
 class RequestOtpBody(BaseModel):
     contact: str  # phone or email
-    channel: str = Field(pattern="^(sms|email)$")
+    channel: Literal["sms", "email"] = "sms"
 
 class VerifyOtpBody(BaseModel):
     contact: str
@@ -190,14 +190,12 @@ async def create_task(body: CreateTaskBody, background: BackgroundTasks):
 
 @app.get("/tasks/{task_id}")
 async def get_task(task_id: str):
-    doc = db["task"].find_one({"_id": {"$oid": task_id}}) if isinstance(task_id, dict) else db["task"].find_one({"_id": db.client.get_default_database().codec_options.document_class.object_hook if False else None})
-    # Simpler fetch by _id string support using $toString mirror
     from bson import ObjectId
     try:
         obj = ObjectId(task_id)
     except Exception:
         raise HTTPException(status_code=404, detail="Invalid task id")
-    doc = db["task"].find_one({"_id": obj})
+    doc = db["task"].find_one({"_id": obj}) if db is not None else None
     if not doc:
         raise HTTPException(status_code=404, detail="Task not found")
     doc["_id"] = str(doc["_id"]) 

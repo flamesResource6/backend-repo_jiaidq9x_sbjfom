@@ -1,13 +1,19 @@
 INFO:     Will watch for changes in these directories: ['/home/workspace']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [152] using StatReload
-INFO:     Started server process [154]
+INFO:     Started reloader process [284] using StatReload
+INFO:     Started server process [286]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     172.20.0.1:44626 - "HEAD / HTTP/1.1" 405 Method Not Allowed
+INFO:     172.20.0.1:57438 - "HEAD / HTTP/1.1" 405 Method Not Allowed
 WARNING:  Unsupported upgrade request.
 WARNING:  No supported WebSocket library detected. Please use "pip install 'uvicorn[standard]'", or install 'websockets' or 'wsproto' manually.
-INFO:     172.20.0.1:55154 - "GET /ws?topic=user%3Au123 HTTP/1.1" 404 Not Found
+INFO:     172.20.0.1:57454 - "GET /ws?topic=user%3Au123 HTTP/1.1" 404 Not Found
 WARNING:  Unsupported upgrade request.
 WARNING:  No supported WebSocket library detected. Please use "pip install 'uvicorn[standard]'", or install 'websockets' or 'wsproto' manually.
-INFO:     172.20.0.1:55162 - "GET /ws?topic=tasker%3Atsk1 HTTP/1.1" 404 Not Found
+INFO:     172.20.0.1:46742 - "GET /ws?topic=tasker%3Atsk1 HTTP/1.1" 404 Not Found
+WARNING:  Unsupported upgrade request.
+WARNING:  No supported WebSocket library detected. Please use "pip install 'uvicorn[standard]'", or install 'websockets' or 'wsproto' manually.
+INFO:     172.20.0.1:41118 - "GET /ws?topic=user%3Au123 HTTP/1.1" 404 Not Found
+WARNING:  Unsupported upgrade request.
+WARNING:  No supported WebSocket library detected. Please use "pip install 'uvicorn[standard]'", or install 'websockets' or 'wsproto' manually.
+INFO:     172.20.0.1:41124 - "GET /ws?topic=tasker%3Atsk1 HTTP/1.1" 404 Not Found
